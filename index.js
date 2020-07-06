@@ -7,6 +7,10 @@ app.use(express.static('public'));
 
 app.get('/send-id', function(req, res) {
     res.json({id: myLiffId});
+    console.log(req.path);
+});
+
+app.get('/test', function(req, res) {
     console.log(req.query.serial);
 });
 
