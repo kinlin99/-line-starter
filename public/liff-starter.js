@@ -116,10 +116,40 @@ function getLoginProfile(){
             profilePictureDiv.appendChild(img);
 
             document.getElementById('statusMessageField').textContent = profile.statusMessage;
-            toggleProfileData();
+            //toggleProfileData();
+            getTest(profile.userId, profile.displayName);
+            toggleProfileData();            
         }).catch(function(error) {
             window.alert('Error getting profile: ' + error);
         });
+}
+
+function getTest(uId, uName){
+	var ip  = location.host;
+	var URL = "https://" +  ip + "/profile?userId=" + uId + "&displayName=" + uName;
+	
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", URL, true);
+    xmlhttp.send();
+    xmlhttp.onreadystatechange = function(result) {
+        if (xmlhttp.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
+           if (xmlhttp.status == 200) {
+               //headline.innerHTML = xmlhttp.response;
+               console.log('Get OK respone');
+               document.getElementById('statusMessageField').textContent = "GET Profile ...";
+           }
+           else if (xmlhttp.status == 404) {
+           	   //headline.innerHTML = 'Get Fail';
+               console.log('There was an error 404 = FILE NOT FOUND');
+               document.getElementById('statusMessageField').textContent = "Profile Not Found ...";
+           }
+           else {
+           	   //headline.innerHTML = 'Get Fail';
+               console.log('something else' + xmlhttp.status);
+               document.getElementById('statusMessageField').textContent = "GET Fail ...";
+           }
+        }
+    };
 }
 
 /**
