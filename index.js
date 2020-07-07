@@ -10,8 +10,13 @@ app.get('/send-id', function(req, res) {
     console.log(req.path);
 });
 
-app.get('/test', function(req, res) {
+app.get('/device', function(req, res) {
     console.log(req.query.serial);
+});
+
+app.get('/profile', function(req, res) {
+    console.log(req.query.userId);
+    console.log(req.query.displayName);
 });
 
 app.listen(port, () => console.log(`app listening on port ${port}!`));
