@@ -69,6 +69,7 @@ function initializeApp() {
     // check if the user is logged in/out, and disable inappropriate button
     if (liff.isLoggedIn()) {
         document.getElementById('liffLoginButton').disabled = true;
+        getLoginProfile(); /* Angus, 2020/07/07 */
     } else {
         document.getElementById('liffLogoutButton').disabled = true;
     }
@@ -97,6 +98,28 @@ function displayIsInClientInfo() {
     } else {
         document.getElementById('isInClientMessage').textContent = 'You are opening the app in an external browser.';
     }
+}
+
+/* Angus, 2020/07/07 */
+function getLoginProfile(){
+	liff.getProfile().then(function(profile) {
+            document.getElementById('userIdProfileField').textContent = profile.userId;
+            document.getElementById('displayNameField').textContent = profile.displayName;
+
+            const profilePictureDiv = document.getElementById('profilePictureDiv');
+            if (profilePictureDiv.firstElementChild) {
+                profilePictureDiv.removeChild(profilePictureDiv.firstElementChild);
+            }
+            const img = document.createElement('img');
+            img.src = profile.pictureUrl;
+            img.alt = 'Profile Picture';
+            profilePictureDiv.appendChild(img);
+
+            document.getElementById('statusMessageField').textContent = profile.statusMessage;
+            toggleProfileData();
+        }).catch(function(error) {
+            window.alert('Error getting profile: ' + error);
+        });
 }
 
 /**
@@ -163,6 +186,7 @@ function registerButtonHandlers() {
         }
     });
 
+/* Angus 2020/07/07
     // get profile call
     document.getElementById('getProfileButton').addEventListener('click', function() {
         liff.getProfile().then(function(profile) {
@@ -184,6 +208,7 @@ function registerButtonHandlers() {
             window.alert('Error getting profile: ' + error);
         });
     });
+*/
 
     document.getElementById('shareTargetPicker').addEventListener('click', function() {
         if (!liff.isInClient()) {
