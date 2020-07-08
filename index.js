@@ -13,7 +13,6 @@ app.get('/send-id', function(req, res) {
 
 app.get('/device', function(req, res) {
     console.log(req.query.serial);
-    res.end();
     request.post("https://line-starter-v2.herokuapp.com/test", function (err, resp, body) {
         if (err) {
             console.log('Error!');
@@ -21,6 +20,7 @@ app.get('/device', function(req, res) {
             console.log('OK!');
         }
     });
+    res.end();
 });
 
 app.get('/profile', function(req, res) {
