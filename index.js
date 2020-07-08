@@ -13,7 +13,7 @@ app.get('/send-id', function(req, res) {
 
 app.get('/device', function(req, res) {
     console.log(port);
-    console.log(req.query.serial);
+    console.log("Serial : "+req.query.serial);
     request.post("https://line-starter-v2.herokuapp.com/test", function (err, resp, body) {
         if (err) {
             console.log('Error!');
