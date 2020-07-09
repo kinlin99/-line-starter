@@ -28,6 +28,7 @@ app.get('/profile', function(req, res) {
     userId = req.query.userId;
     displayName = req.query.displayName;
     res.end();
+    if (serial.length() > 0) {
     var reqUrl = "https://line-starter-v2.herokuapp.com/devicecb?"+"serial="+serial+"&"+"userId="+userId;
     request.get(reqUrl, function (err, resp, body) {
         if (err) {
@@ -36,6 +37,7 @@ app.get('/profile', function(req, res) {
             console.log('OK!');
         }
     });
+    }
     serial = '';
     userId = '';
     displayName = '';
