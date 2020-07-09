@@ -29,7 +29,7 @@ app.get('/profile', function(req, res) {
     displayName = req.query.displayName;
     res.end();
     var reqUrl = "https://line-starter-v2.herokuapp.com/devicecb?"+"serial="+serial+"&"+"userId="+userId;
-    request.get(, function (err, resp, body) {
+    request.get(reqUrl, function (err, resp, body) {
         if (err) {
             console.log(funcEP+'Error!');
         } else {
