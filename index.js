@@ -18,11 +18,10 @@ app.get('/device', function(req, res) {
     console.log('/device')
     console.log("Serial : "+req.query.serial);
     serial = req.query.serial;
-    res.end();
+    res.redirect('/');
 });
 
 app.get('/', function(req, res) {
-    console.log('/')
     console.log("Serial : "+req.query.serial);
     serial = req.query.serial;
     res.end();
