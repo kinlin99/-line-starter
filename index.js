@@ -15,14 +15,14 @@ app.get('/send-id', function(req, res) {
 });
 
 app.get('/device', function(req, res) {
-    //console.log(funcEP+'/device')
+    console.log('/device')
     console.log("Serial : "+req.query.serial);
     serial = req.query.serial;
     res.end();
 });
 
 app.get('/profile', function(req, res) {
-    console.log(funcEP+'/profile')
+    console.log('/profile')
     console.log("userId : "+req.query.userId);
     console.log("displayName : "+req.query.displayName);
     userId = req.query.userId;
@@ -31,15 +31,15 @@ app.get('/profile', function(req, res) {
     var reqUrl = "https://line-starter-v2.herokuapp.com/devicecb?"+"serial="+serial+"&"+"userId="+userId;
     request.get(reqUrl, function (err, resp, body) {
         if (err) {
-            console.log(funcEP+'Error!');
+            console.log('Error!');
         } else {
-            console.log(funcEP+'OK!');
+            console.log('OK!');
         }
     });
 });
 
 app.get('/devicecb', function(req, res) {
-    console.log(funcEP+'/devicecb')
+    console.log('/devicecb')
     console.log('serial : '+req.query.serial);
     console.log('userId : '+req.query.userId);
     res.end();
