@@ -6,6 +6,7 @@ const myLiffId = process.env.MY_LIFF_ID;
 var userId='';
 var displayName='';
 var serial='';
+var reqSend=0;
 
 app.use(express.static('public'));
 
@@ -18,6 +19,7 @@ app.get('/device', function(req, res) {
     console.log('/device')
     console.log("Serial : "+req.query.serial);
     serial = req.query.serial;
+    reqSend = 1;
     res.redirect('/');
 });
 
@@ -28,7 +30,7 @@ app.get('/profile', function(req, res) {
     userId = req.query.userId;
     displayName = req.query.displayName;
     res.end();
-    if (serial.length > 0) {
+    if (reqSend == 0) return;
     var reqUrl = "https://line-starter-v2.herokuapp.com/devicecb?"+"serial="+serial+"&"+"userId="+userId;
     request.get(reqUrl, function (err, resp, body) {
         if (err) {
@@ -37,10 +39,7 @@ app.get('/profile', function(req, res) {
             console.log('OK!');
         }
     });
-    }
-    serial = '';
-    userId = '';
-    displayName = '';
+    reqSend = 0;
 });
 
 app.get('/devicecb', function(req, res) {
