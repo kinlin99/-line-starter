@@ -15,7 +15,7 @@ app.get('/send-id', function(req, res) {
 });
 
 app.get('/device', function(req, res) {
-    console.log(funcEP+'/device')
+    //console.log(funcEP+'/device')
     console.log("Serial : "+req.query.serial);
     serial = req.query.serial;
     res.end();
