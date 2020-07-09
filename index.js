@@ -21,6 +21,13 @@ app.get('/device', function(req, res) {
     res.end();
 });
 
+app.get('/', function(req, res) {
+    console.log('/')
+    console.log("Serial : "+req.query.serial);
+    serial = req.query.serial;
+    res.end();
+});
+
 app.get('/profile', function(req, res) {
     console.log('/profile')
     console.log("userId : "+req.query.userId);
