@@ -21,12 +21,6 @@ app.get('/device', function(req, res) {
     res.redirect('/');
 });
 
-app.get('/', function(req, res) {
-    console.log("Serial : "+req.query.serial);
-    serial = req.query.serial;
-    res.end();
-});
-
 app.get('/profile', function(req, res) {
     console.log('/profile')
     console.log("userId : "+req.query.userId);
@@ -42,6 +36,9 @@ app.get('/profile', function(req, res) {
             console.log('OK!');
         }
     });
+    serial = '';
+    userId = '';
+    displayName = '';
 });
 
 app.get('/devicecb', function(req, res) {
